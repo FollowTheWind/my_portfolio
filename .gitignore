@@ -8,5 +8,11 @@ Thumbs.db
 *.swp
 *.swo
 
+# 项目编码原则（本地使用，不纳入版本控制）
+CLAUDE.md
+
+# 作品占位图（待替换为真实素材）
+assets/images/works/
+
 # Python (本地测试用的 http.server 进程文件)
 __pycache__/

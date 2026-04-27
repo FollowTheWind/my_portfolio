@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "title": "官湖 · 大海与狗",
+    "type": "video",
+    "cover": "assets/images/works/work-01.jpg",
+    "source": "assets/videos/work-01.mp4",
+    "description": "短视频作品"
+  },
+  {
+    "id": 2,
+    "title": "致橡树",
+    "type": "image",
+    "cover": "assets/images/works/work-02.jpg",
+    "source": "assets/images/works/work-02.jpg",
+    "description": "摄影作品"
+  },
+  {
+    "id": 3,
+    "title": "城市之光",
+    "type": "image",
+    "cover": "assets/images/works/work-03.jpg",
+    "source": "assets/images/works/work-03.jpg",
+    "description": "摄影作品"
+  },
+  {
+    "id": 4,
+    "title": "咖啡时光",
+    "type": "video",
+    "cover": "assets/images/works/work-04.jpg",
+    "source": "assets/videos/work-02.mp4",
+    "description": "短视频作品"
+  },
+  {
+    "id": 5,
+    "title": "山间晨雾",
+    "type": "image",
+    "cover": "assets/images/works/work-05.jpg",
+    "source": "assets/images/works/work-05.jpg",
+    "description": "摄影作品"
+  },
+  {
+    "id": 6,
+    "title": "老街记忆",
+    "type": "image",
+    "cover": "assets/images/works/work-06.jpg",
+    "source": "assets/images/works/work-06.jpg",
+    "description": "摄影作品"
+  },
+  {
+    "id": 7,
+    "title": "追光者",
+    "type": "video",
+    "cover": "assets/images/works/work-07.jpg",
+    "source": "assets/videos/work-03.mp4",
+    "description": "短视频作品"
+  },
+  {
+    "id": 8,
+    "title": "静物集",
+    "type": "image",
+    "cover": "assets/images/works/work-08.jpg",
+    "source": "assets/images/works/work-08.jpg",
+    "description": "摄影作品"
+  }
+]

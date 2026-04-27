@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>彭星 - 摄影 · 视频 · 创意</title>
+  <meta name="description" content="彭星个人作品集 —— 商业摄影、短视频剪辑、文案策划。期待与你合作，让创意发声。">
+
+  <meta property="og:title" content="彭星 - 摄影 · 视频 · 创意">
+  <meta property="og:description" content="彭星个人作品集 —— 商业摄影、短视频剪辑、文案策划">
+  <meta property="og:image" content="assets/images/og-cover.jpg">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header" id="header">
+    <div class="container header-inner">
+      <a href="#" class="logo">彭星</a>
+      <nav class="main-nav" id="mainNav">
+        <a href="#works" class="nav-link">作品</a>
+        <a href="#about" class="nav-link">关于</a>
+        <a href="#contact" class="nav-link">联系</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="切换菜单">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-content">
+        <h1 class="hero-title">彭星</h1>
+        <p class="hero-subtitle">摄影 · 视频 · 创意</p>
+      </div>
+      <a href="#works" class="scroll-down" aria-label="向下滚动">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </a>
+    </section>
+
+    <section class="works" id="works">
+      <div class="container">
+        <h2 class="section-title">作品</h2>
+        <div class="works-grid" id="worksGrid"></div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container about-inner">
+        <div class="about-photo">
+          <img src="assets/images/avatar.jpg" alt="彭星个人照片" loading="lazy">
+        </div>
+        <div class="about-text">
+          <h2 class="section-title">关于我</h2>
+          <p>我是彭星，一名文案策划从业者，同时也热爱摄影与短视频创作。我相信好的内容需要视觉与文字的共鸣，而每一次快门和剪辑都是在讲述独特的故事。</p>
+          <p>从商业摄影到短视频剪辑，从品牌文案到创意策划，我致力于用专业的技能和独特的视角，为每一个项目注入灵魂。无论是企业宣传、个人IP打造，还是产品展示，我都期待与你一起创造令人印象深刻的作品。</p>
+          <div class="about-tags">
+            <span class="tag">商业摄影</span>
+            <span class="tag">短视频剪辑</span>
+            <span class="tag">文案策划</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container contact-inner">
+        <h2 class="section-title">联系方式</h2>
+        <p class="contact-invite">期待与你合作，让创意发声</p>
+        <a href="tel:+8613800138000" class="contact-phone">138-0013-8000</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 彭星 · All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" aria-label="关闭">&times;</button>
+    <button class="lightbox-prev" aria-label="上一张">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </button>
+    <button class="lightbox-next" aria-label="下一张">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+    </button>
+    <div class="lightbox-content">
+      <img src="" alt="" id="lightboxImg">
+    </div>
+    <p class="lightbox-caption" id="lightboxCaption"></p>
+  </div>
+
+  <div class="video-modal" id="videoModal">
+    <button class="video-modal-close" aria-label="关闭">&times;</button>
+    <div class="video-modal-content">
+      <video controls id="modalVideo" playsinline></video>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

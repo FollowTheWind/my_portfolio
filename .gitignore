@@ -16,3 +16,4 @@ assets/images/works/
 
 # Python (本地测试用的 http.server 进程文件)
 __pycache__/
+CLAUDE.local.md

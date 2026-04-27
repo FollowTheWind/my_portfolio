@@ -1,15 +1,20 @@
-if ('scrollRestoration' in history) {
-  history.scrollRestoration = 'manual';
-}
-
 document.addEventListener('DOMContentLoaded', () => {
+  /* ========================================
+     iOS 防橡皮筋滚动
+     ======================================== */
+  document.body.addEventListener('touchmove', (e) => {
+    // 允许在可滚动区域内部滚动
+    const scrollable = e.target.closest('.works-scroll, .about-scroll, .lightbox-content, .video-modal-content');
+    if (!scrollable) {
+      e.preventDefault();
+    }
+  }, { passive: false });
+
   /* ========================================
      DOM 元素
      ======================================== */
-  const header = document.getElementById('header');
-  const menuToggle = document.getElementById('menuToggle');
-  const mainNav = document.getElementById('mainNav');
-  const navLinks = document.querySelectorAll('.nav-link');
+  const pages = document.querySelectorAll('.page');
+  const navItems = document.querySelectorAll('.nav-item');
   const worksGrid = document.getElementById('worksGrid');
 
   const lightbox = document.getElementById('lightbox');
@@ -26,51 +31,31 @@ document.addEventListener('DOMContentLoaded', () => {
   let worksData = [];
   let currentImageIndex = 0;
   let imageWorks = [];
+  let worksLoaded = false;
 
   /* ========================================
-     移动端菜单
+     页面切换
      ======================================== */
-  menuToggle.addEventListener('click', () => {
-    menuToggle.classList.toggle('active');
-    mainNav.classList.toggle('open');
-  });
+  function switchPage(pageName) {
+    pages.forEach(p => p.classList.toggle('active', p.id === `page${pageName.charAt(0).toUpperCase() + pageName.slice(1)}`));
+    navItems.forEach(n => n.classList.toggle('active', n.dataset.page === pageName));
+  }
 
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      menuToggle.classList.remove('active');
-      mainNav.classList.remove('open');
+  navItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const pageName = item.dataset.page;
+      switchPage(pageName);
+
+      if (pageName === 'works' && !worksLoaded) {
+        loadWorks();
+        worksLoaded = true;
+      }
     });
   });
 
-  /* ========================================
-     导航栏滚动效果
-     ======================================== */
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-  });
-
-  /* ========================================
-     导航高亮（Intersection Observer）
-     ======================================== */
-  const sections = document.querySelectorAll('section[id]');
-  const sectionObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const id = entry.target.getAttribute('id');
-          navLinks.forEach(link => {
-            link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
-          });
-        }
-      });
-    },
-    { threshold: 0.3 }
-  );
-  sections.forEach(section => sectionObserver.observe(section));
+  // 默认加载作品（后台预加载）
+  loadWorks();
+  worksLoaded = true;
 
   /* ========================================
      加载并渲染作品
@@ -122,7 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     worksGrid.querySelectorAll('.work-card').forEach(card => {
       card.addEventListener('click', () => {
-        // 刚结束拖拽时，抑制一次 click（防止误触发弹窗）
         if (worksGrid.dataset.justDragged === 'true') return;
 
         const id = parseInt(card.dataset.id);
@@ -159,17 +143,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ========================================
-     拖拽排序（基于 SortableJS）
+     拖拽排序（SortableJS）
      ======================================== */
   let sortableInstance = null;
 
   function enableDragSort(container) {
-    if (typeof Sortable === 'undefined') {
-      console.warn('SortableJS 未加载，拖拽排序不可用');
-      return;
-    }
+    if (typeof Sortable === 'undefined') return;
 
-    // 每次重新渲染都重建实例，避免旧实例绑定在已移除的 DOM 上
     if (sortableInstance) {
       sortableInstance.destroy();
       sortableInstance = null;
@@ -178,41 +158,32 @@ document.addEventListener('DOMContentLoaded', () => {
     sortableInstance = Sortable.create(container, {
       animation: 180,
       easing: 'cubic-bezier(0.22, 0.61, 0.36, 1)',
-      ghostClass: 'work-card-ghost',    // 占位元素样式
-      chosenClass: 'work-card-chosen',  // 被选中元素样式
-      dragClass: 'work-card-drag',      // 拖动中元素样式
-      forceFallback: true,              // 统一走 JS 模拟，避免原生 HTML5 DnD 在 Safari/移动端的差异
-      fallbackTolerance: 5,             // 手指/鼠标位移超过 5px 才判定为拖拽，否则视为点击
+      ghostClass: 'work-card-ghost',
+      chosenClass: 'work-card-chosen',
+      dragClass: 'work-card-drag',
+      forceFallback: true,
+      fallbackTolerance: 5,
       delay: 0,
       delayOnTouchOnly: true,
       touchStartThreshold: 3,
 
       onStart() {
         container.dataset.justDragged = 'true';
-        document.body.style.userSelect = 'none';
       },
 
       onEnd(evt) {
-        document.body.style.userSelect = '';
-
-        // 顺序确实发生变化时才同步数据
         if (evt.oldIndex !== evt.newIndex) {
-          syncDataOrder();
+          const ids = [...container.querySelectorAll('.work-card')].map(c => parseInt(c.dataset.id));
+          const map = new Map(worksData.map(w => [w.id, w]));
+          worksData = ids.map(id => map.get(id)).filter(Boolean);
+          imageWorks = worksData.filter(w => w.type === 'image');
         }
 
-        // 稍延迟后清除标记，避免 mouseup 后紧接的 click 误触发弹窗
         setTimeout(() => {
           delete container.dataset.justDragged;
         }, 50);
       }
     });
-
-    function syncDataOrder() {
-      const ids = [...container.querySelectorAll('.work-card')].map(c => parseInt(c.dataset.id));
-      const map = new Map(worksData.map(w => [w.id, w]));
-      worksData = ids.map(id => map.get(id)).filter(Boolean);
-      imageWorks = worksData.filter(w => w.type === 'image');
-    }
   }
 
   /* ========================================
@@ -223,7 +194,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (currentImageIndex === -1) currentImageIndex = 0;
     updateLightbox();
     lightbox.classList.add('active');
-    document.body.style.overflow = 'hidden';
   }
 
   function updateLightbox() {
@@ -235,7 +205,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function closeLightbox() {
     lightbox.classList.remove('active');
-    document.body.style.overflow = '';
   }
 
   function prevImage() {
@@ -285,13 +254,11 @@ document.addEventListener('DOMContentLoaded', () => {
     modalVideo.src = work.source;
     modalVideo.poster = work.cover;
     videoModal.classList.add('active');
-    document.body.style.overflow = 'hidden';
     modalVideo.play().catch(() => {});
   }
 
   function closeVideoModal() {
     videoModal.classList.remove('active');
-    document.body.style.overflow = '';
     modalVideo.pause();
     modalVideo.src = '';
   }
@@ -305,9 +272,4 @@ document.addEventListener('DOMContentLoaded', () => {
       closeVideoModal();
     }
   });
-
-  /* ========================================
-     启动
-     ======================================== */
-  loadWorks();
 });

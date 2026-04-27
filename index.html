@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>彭星 - 摄影 · 视频 · 创意</title>
   <meta name="description" content="彭星个人作品集 —— 商业摄影、短视频剪辑、文案策划。期待与你合作，让创意发声。">
 
@@ -19,44 +19,29 @@
 </head>
 <body>
 
-  <header class="site-header" id="header">
-    <div class="container header-inner">
-      <a href="#" class="logo">彭星</a>
-      <nav class="main-nav" id="mainNav">
-        <a href="#works" class="nav-link">作品</a>
-        <a href="#about" class="nav-link">关于</a>
-        <a href="#contact" class="nav-link">联系</a>
-      </nav>
-      <button class="menu-toggle" id="menuToggle" aria-label="切换菜单">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+<div class="app">
+  <!-- ==================== 页面：我（Hero） ==================== -->
+  <section class="page page-hero active" id="pageHero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <h1 class="hero-title">彭星</h1>
+      <p class="hero-subtitle">摄影 · 视频 · 创意</p>
     </div>
-  </header>
+  </section>
 
-  <main>
-    <section class="hero" id="hero">
-      <div class="hero-bg"></div>
-      <div class="hero-content">
-        <h1 class="hero-title">彭星</h1>
-        <p class="hero-subtitle">摄影 · 视频 · 创意</p>
-      </div>
-      <a href="#works" class="scroll-down" aria-label="向下滚动">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"></polyline>
-        </svg>
-      </a>
-    </section>
-
-    <section class="works" id="works">
+  <!-- ==================== 页面：作品 ==================== -->
+  <section class="page page-works" id="pageWorks">
+    <div class="works-scroll">
       <div class="container">
         <h2 class="section-title">作品</h2>
         <div class="works-grid" id="worksGrid"></div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="about" id="about">
+  <!-- ==================== 页面：关于 ==================== -->
+  <section class="page page-about" id="pageAbout">
+    <div class="about-scroll">
       <div class="container about-inner">
         <div class="about-photo">
           <img src="assets/images/avatar.jpg" alt="彭星个人照片" loading="lazy">
@@ -70,47 +55,68 @@
             <span class="tag">短视频剪辑</span>
             <span class="tag">文案策划</span>
           </div>
+          <div class="about-contact">
+            <p class="contact-label">期待与你合作，让创意发声</p>
+            <a href="tel:+8613800138000" class="contact-phone">138-0013-8000</a>
+          </div>
         </div>
       </div>
-    </section>
-
-    <section class="contact" id="contact">
-      <div class="container contact-inner">
-        <h2 class="section-title">联系方式</h2>
-        <p class="contact-invite">期待与你合作，让创意发声</p>
-        <a href="tel:+8613800138000" class="contact-phone">138-0013-8000</a>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container">
-      <p>© 2026 彭星 · All Rights Reserved</p>
     </div>
-  </footer>
+  </section>
 
-  <div class="lightbox" id="lightbox">
-    <button class="lightbox-close" aria-label="关闭">&times;</button>
-    <button class="lightbox-prev" aria-label="上一张">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+  <!-- ==================== 底部导航 ==================== -->
+  <nav class="bottom-nav">
+    <button class="nav-item active" data-page="hero" aria-label="我">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="8" r="4"></circle>
+        <path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"></path>
+      </svg>
+      <span>我</span>
     </button>
-    <button class="lightbox-next" aria-label="下一张">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+    <button class="nav-item" data-page="works" aria-label="作品">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+        <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+        <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+        <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+      </svg>
+      <span>作品</span>
     </button>
-    <div class="lightbox-content">
-      <img src="" alt="" id="lightboxImg">
-    </div>
-    <p class="lightbox-caption" id="lightboxCaption"></p>
-  </div>
+    <button class="nav-item" data-page="about" aria-label="关于">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="12" y1="16" x2="12" y2="12"></line>
+        <circle cx="12" cy="8" r="0.5" fill="currentColor"></circle>
+      </svg>
+      <span>关于</span>
+    </button>
+  </nav>
+</div>
 
-  <div class="video-modal" id="videoModal">
-    <button class="video-modal-close" aria-label="关闭">&times;</button>
-    <div class="video-modal-content">
-      <video controls id="modalVideo" playsinline></video>
-    </div>
+<!-- ==================== 灯箱 ==================== -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" aria-label="关闭">&times;</button>
+  <button class="lightbox-prev" aria-label="上一张">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+  </button>
+  <button class="lightbox-next" aria-label="下一张">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+  </button>
+  <div class="lightbox-content">
+    <img src="" alt="" id="lightboxImg">
   </div>
+  <p class="lightbox-caption" id="lightboxCaption"></p>
+</div>
 
-  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
-  <script src="js/main.js"></script>
+<!-- ==================== 视频模态框 ==================== -->
+<div class="video-modal" id="videoModal">
+  <button class="video-modal-close" aria-label="关闭">&times;</button>
+  <div class="video-modal-content">
+    <video controls id="modalVideo" playsinline></video>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

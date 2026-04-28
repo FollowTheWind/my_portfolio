@@ -299,7 +299,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ipId,
         ipName: name,
         ipDesc: descs[i],
-        ipCover: '',
+        ipCover: `assets/images/IP covers/${ipId}.jpg`,
         works: [
           { id: ipId * 100 + 1, title: '作品 01', type: 'image', cover: '', source: '' },
           { id: ipId * 100 + 2, title: '作品 02', type: 'video', cover: '', source: '' },

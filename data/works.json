@@ -1,59 +1,59 @@
 [
-  { "ipId": 1,  "ipName": "林毅",       "ipDesc": "北京奥运会总摄影师", "ipCover": "", "works": [
+  { "ipId": 1,  "ipName": "林毅",       "ipDesc": "北京奥运会总摄影师", "ipCover": "assets/images/IP covers/1.jpg", "works": [
     { "id": 101, "title": "作品 01", "type": "image", "cover": "", "source": "" },
     { "id": 102, "title": "作品 02", "type": "video", "cover": "", "source": "" },
     { "id": 103, "title": "作品 03", "type": "image", "cover": "", "source": "" },
     { "id": 104, "title": "作品 04", "type": "video", "cover": "", "source": "" }
   ]},
-  { "ipId": 2,  "ipName": "胡维勤",     "ipDesc": "红墙御医", "ipCover": "", "works": [
+  { "ipId": 2,  "ipName": "胡维勤",     "ipDesc": "红墙御医", "ipCover": "assets/images/IP covers/2.jpg", "works": [
     { "id": 201, "title": "作品 01", "type": "image", "cover": "", "source": "" },
     { "id": 202, "title": "作品 02", "type": "video", "cover": "", "source": "" },
     { "id": 203, "title": "作品 03", "type": "image", "cover": "", "source": "" },
     { "id": 204, "title": "作品 04", "type": "video", "cover": "", "source": "" }
   ]},
-  { "ipId": 3,  "ipName": "马天行",     "ipDesc": "训犬师", "ipCover": "", "works": [
+  { "ipId": 3,  "ipName": "马天行",     "ipDesc": "训犬师", "ipCover": "assets/images/IP covers/3.jpg", "works": [
     { "id": 301, "title": "作品 01", "type": "image", "cover": "", "source": "" },
     { "id": 302, "title": "作品 02", "type": "video", "cover": "", "source": "" },
     { "id": 303, "title": "作品 03", "type": "image", "cover": "", "source": "" },
     { "id": 304, "title": "作品 04", "type": "video", "cover": "", "source": "" }
   ]},
-  { "ipId": 4,  "ipName": "殷国辉",     "ipDesc": "国学", "ipCover": "", "works": [
+  { "ipId": 4,  "ipName": "殷国辉",     "ipDesc": "国学", "ipCover": "assets/images/IP covers/4.jpg", "works": [
     { "id": 401, "title": "作品 01", "type": "image", "cover": "", "source": "" },
     { "id": 402, "title": "作品 02", "type": "video", "cover": "", "source": "" },
     { "id": 403, "title": "作品 03", "type": "image", "cover": "", "source": "" },
     { "id": 404, "title": "作品 04", "type": "video", "cover": "", "source": "" }
   ]},
-  { "ipId": 5,  "ipName": "郭春林",     "ipDesc": "哲学", "ipCover": "", "works": [
+  { "ipId": 5,  "ipName": "郭春林",     "ipDesc": "哲学", "ipCover": "assets/images/IP covers/5.jpg", "works": [
     { "id": 501, "title": "作品 01", "type": "image", "cover": "", "source": "" },
     { "id": 502, "title": "作品 02", "type": "video", "cover": "", "source": "" },
     { "id": 503, "title": "作品 03", "type": "image", "cover": "", "source": "" },
     { "id": 504, "title": "作品 04", "type": "video", "cover": "", "source": "" }
   ]},
-  { "ipId": 6,  "ipName": "郭继承",     "ipDesc": "传统文化", "ipCover": "", "works": [
+  { "ipId": 6,  "ipName": "郭继承",     "ipDesc": "传统文化", "ipCover": "assets/images/IP covers/6.jpg", "works": [
     { "id": 601, "title": "作品 01", "type": "image", "cover": "", "source": "" },
     { "id": 602, "title": "作品 02", "type": "video", "cover": "", "source": "" },
     { "id": 603, "title": "作品 03", "type": "image", "cover": "", "source": "" },
     { "id": 604, "title": "作品 04", "type": "video", "cover": "", "source": "" }
   ]},
-  { "ipId": 7,  "ipName": "沈亦菲",     "ipDesc": "家庭教育", "ipCover": "", "works": [
+  { "ipId": 7,  "ipName": "沈亦菲",     "ipDesc": "家庭教育", "ipCover": "assets/images/IP covers/7.jpg", "works": [
     { "id": 701, "title": "作品 01", "type": "image", "cover": "", "source": "" },
     { "id": 702, "title": "作品 02", "type": "video", "cover": "", "source": "" },
     { "id": 703, "title": "作品 03", "type": "image", "cover": "", "source": "" },
     { "id": 704, "title": "作品 04", "type": "video", "cover": "", "source": "" }
   ]},
-  { "ipId": 8,  "ipName": "沈德斌",     "ipDesc": "传统文化", "ipCover": "", "works": [
+  { "ipId": 8,  "ipName": "沈德斌",     "ipDesc": "传统文化", "ipCover": "assets/images/IP covers/8.jpg", "works": [
     { "id": 801, "title": "作品 01", "type": "image", "cover": "", "source": "" },
     { "id": 802, "title": "作品 02", "type": "video", "cover": "", "source": "" },
     { "id": 803, "title": "作品 03", "type": "image", "cover": "", "source": "" },
     { "id": 804, "title": "作品 04", "type": "video", "cover": "", "source": "" }
   ]},
-  { "ipId": 9,  "ipName": "林一飞",     "ipDesc": "女性成长", "ipCover": "", "works": [
+  { "ipId": 9,  "ipName": "林一飞",     "ipDesc": "女性成长", "ipCover": "assets/images/IP covers/9.jpg", "works": [
     { "id": 901, "title": "作品 01", "type": "image", "cover": "", "source": "" },
     { "id": 902, "title": "作品 02", "type": "video", "cover": "", "source": "" },
     { "id": 903, "title": "作品 03", "type": "image", "cover": "", "source": "" },
     { "id": 904, "title": "作品 04", "type": "video", "cover": "", "source": "" }
   ]},
-  { "ipId": 10, "ipName": "摄影师大景", "ipDesc": "独立摄影师", "ipCover": "", "works": [
+  { "ipId": 10, "ipName": "摄影师大景", "ipDesc": "独立摄影师", "ipCover": "assets/images/IP covers/10.jpg", "works": [
     { "id": 1001, "title": "作品 01", "type": "image", "cover": "", "source": "" },
     { "id": 1002, "title": "作品 02", "type": "video", "cover": "", "source": "" },
     { "id": 1003, "title": "作品 03", "type": "image", "cover": "", "source": "" },

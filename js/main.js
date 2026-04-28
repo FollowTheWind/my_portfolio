@@ -126,6 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const snapshot = ipsData.map(ip => ({
       ipId: ip.ipId,
       ipName: ip.ipName,
+      ipDesc: ip.ipDesc || '',
       ipCover: ip.ipCover || '',
       works: ip.works.map(w => ({
         id: w.id,
@@ -211,6 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
       restored.push({
         ipId: ip.ipId,
         ipName: ip.ipName,
+        ipDesc: ip.ipDesc || '',
         ipCover: ip.ipCover || '',
         works
       });
@@ -242,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function ipCoverSrc(ip) {
-    return ip.ipCover || placeholderSVG(ipColor(ip.ipId), ip.ipName, 400, 533);
+    return ip.ipCover || placeholderSVG(ipColor(ip.ipId), '', 400, 533);
   }
 
   function workCoverSrc(work, ipId) {
@@ -290,11 +292,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function getDefaultIPs() {
     const names = ['林毅','胡维勤','马天行','殷国辉','郭春林','郭继承','沈亦菲','沈德斌','林一飞','摄影师大景'];
+    const descs = ['北京奥运会总摄影师','红墙御医','训犬师','国学','哲学','传统文化','家庭教育','传统文化','女性成长','独立摄影师'];
     return names.map((name, i) => {
       const ipId = i + 1;
       return {
         ipId,
         ipName: name,
+        ipDesc: descs[i],
         ipCover: '',
         works: [
           { id: ipId * 100 + 1, title: '作品 01', type: 'image', cover: '', source: '' },
@@ -313,6 +317,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <img src="${ipCoverSrc(ip)}" alt="${ip.ipName}" loading="lazy">
         </div>
         <div class="ip-card-name">${ip.ipName}</div>
+        ${ip.ipDesc ? `<div class="ip-card-desc">${ip.ipDesc}</div>` : ''}
       </div>
     `).join('');
 

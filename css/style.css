@@ -209,11 +209,20 @@ button {
 }
 
 .ip-card-name {
-  padding: 14px var(--space-sm);
+  padding: 14px var(--space-sm) 4px;
   font-size: 16px;
   font-weight: 500;
   text-align: center;
   letter-spacing: 1px;
+}
+
+.ip-card-desc {
+  padding: 0 var(--space-sm) 14px;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  text-align: center;
+  letter-spacing: 0.5px;
 }
 
 /* 第二层：IP 作品 */

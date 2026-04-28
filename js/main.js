@@ -279,7 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!restored) {
       // 首次访问或快照不存在，才加载默认数据
       try {
-        const response = await fetch('data/works.json');
+        const response = await fetch('data/works.json', { cache: 'no-store' });
         ipsData = await response.json();
       } catch (err) {
         console.warn('无法加载 works.json，使用默认数据', err);

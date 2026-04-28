@@ -314,7 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ipGrid.innerHTML = ipsData.map(ip => `
       <div class="ip-card" data-ip-id="${ip.ipId}">
         <div class="ip-card-cover">
-          <img src="${ipCoverSrc(ip)}" alt="${ip.ipName}" loading="lazy">
+          <img src="${ipCoverSrc(ip)}" alt="${ip.ipName}">
         </div>
         <div class="ip-card-name">${ip.ipName}</div>
         ${ip.ipDesc ? `<div class="ip-card-desc">${ip.ipDesc}</div>` : ''}

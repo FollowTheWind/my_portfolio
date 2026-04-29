@@ -3,28 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>彭星 - 摄影 · 视频 · 创意</title>
+  <title>彭星 — 摄影 · 视频 · 创意</title>
   <meta name="description" content="彭星个人作品集 —— 商业摄影、短视频剪辑、文案策划。期待与你合作，让创意发声。">
 
-  <meta property="og:title" content="彭星 - 摄影 · 视频 · 创意">
+  <meta property="og:title" content="彭星 — 摄影 · 视频 · 创意">
   <meta property="og:description" content="彭星个人作品集 —— 商业摄影、短视频剪辑、文案策划">
   <meta property="og:image" content="assets/images/og-cover.jpg">
   <meta property="og:type" content="website">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="css/style.css?v=2">
+  <link rel="stylesheet" href="css/style.css?v=4">
 </head>
 <body>
 
 <div class="app">
   <!-- ==================== 页面：我（Hero） ==================== -->
   <section class="page page-hero active" id="pageHero">
-    <div class="hero-bg"></div>
     <div class="hero-content">
-      <h1 class="hero-title">彭星</h1>
+      <h1 class="hero-title">
+        <span class="hero-char">彭</span><span class="hero-char">星</span>
+      </h1>
       <p class="hero-subtitle">摄影 · 视频 · 创意</p>
     </div>
   </section>
@@ -35,7 +36,9 @@
       <!-- 第一层：IP 列表 -->
       <div class="ip-layer" id="ipLayer">
         <div class="container">
-          <h2 class="section-title">IP</h2>
+          <header class="section-header">
+            <h2 class="section-title">作品</h2>
+          </header>
           <div class="ip-grid" id="ipGrid"></div>
         </div>
       </div>
@@ -43,7 +46,7 @@
       <div class="ip-works-layer" id="ipWorksLayer" style="display:none">
         <div class="container">
           <button class="ip-back" id="ipBack">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
             <span>返回</span>
           </button>
           <h2 class="section-title" id="ipWorksTitle"></h2>
@@ -61,9 +64,14 @@
           <img src="assets/images/avatar.jpg" alt="彭星个人照片" loading="lazy">
         </div>
         <div class="about-text">
-          <h2 class="section-title">关于我</h2>
-          <p>我是彭星，一名文案策划从业者，同时也热爱摄影与短视频创作。我相信好的内容需要视觉与文字的共鸣，而每一次快门和剪辑都是在讲述独特的故事。</p>
-          <p>从商业摄影到短视频剪辑，从品牌文案到创意策划，我致力于用专业的技能和独特的视角，为每一个项目注入灵魂。无论是企业宣传、个人IP打造，还是产品展示，我都期待与你一起创造令人印象深刻的作品。</p>
+          <header class="section-header">
+            <h2 class="section-title">关于我</h2>
+          </header>
+          <div class="about-body">
+            <p class="about-lead">我是彭星，一名文案策划从业者，同时也热爱摄影与短视频创作。</p>
+            <p>我相信好的内容需要视觉与文字的共鸣，而每一次快门和剪辑都是在讲述独特的故事。从商业摄影到短视频剪辑，从品牌文案到创意策划，我致力于用专业的技能和独特的视角，为每一个项目注入灵魂。</p>
+            <p>无论是企业宣传、个人IP打造，还是产品展示，我都期待与你一起创造令人印象深刻的作品。</p>
+          </div>
           <div class="about-tags">
             <span class="tag">商业摄影</span>
             <span class="tag">短视频剪辑</span>
@@ -81,14 +89,14 @@
   <!-- ==================== 底部导航 ==================== -->
   <nav class="bottom-nav">
     <button class="nav-item active" data-page="hero" aria-label="我">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="12" cy="8" r="4"></circle>
         <path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"></path>
       </svg>
       <span>我</span>
     </button>
     <button class="nav-item" data-page="works" aria-label="作品">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
         <rect x="3" y="3" width="7" height="7" rx="1"></rect>
         <rect x="14" y="3" width="7" height="7" rx="1"></rect>
         <rect x="3" y="14" width="7" height="7" rx="1"></rect>
@@ -97,7 +105,7 @@
       <span>作品</span>
     </button>
     <button class="nav-item" data-page="about" aria-label="关于">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="12" cy="12" r="10"></circle>
         <line x1="12" y1="16" x2="12" y2="12"></line>
         <circle cx="12" cy="8" r="0.5" fill="currentColor"></circle>
@@ -111,11 +119,11 @@
 <div class="action-sheet-overlay" id="actionSheetOverlay">
   <div class="action-sheet">
     <button class="action-btn action-replace" id="actionReplace">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.5 18.5A9 9 0 1 0 2 12"></path></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.5 18.5A9 9 0 1 0 2 12"></path></svg>
       <span>替换</span>
     </button>
     <button class="action-btn action-delete" id="actionDelete">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
       <span>删除</span>
     </button>
     <button class="action-btn action-cancel" id="actionCancel">取消</button>
@@ -126,10 +134,10 @@
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" aria-label="关闭">&times;</button>
   <button class="lightbox-prev" aria-label="上一张">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
   </button>
   <button class="lightbox-next" aria-label="下一张">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
   </button>
   <div class="lightbox-content">
     <img src="" alt="" id="lightboxImg">
@@ -146,6 +154,6 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
-<script src="js/main.js?v=2"></script>
+<script src="js/main.js?v=4"></script>
 </body>
 </html>

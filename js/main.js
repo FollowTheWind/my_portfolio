@@ -321,11 +321,18 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     `).join('');
 
-    ipGrid.querySelectorAll('.ip-card').forEach(card => {
+    ipGrid.querySelectorAll('.ip-card').forEach((card, index) => {
       card.addEventListener('click', () => {
         const ipId = parseInt(card.dataset.ipId);
         const ip = ipsData.find(i => i.ipId === ipId);
         if (ip) openIP(ip);
+      });
+      // staggered entrance
+      card.style.transitionDelay = `${index * 0.06}s`;
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          card.classList.add('visible');
+        });
       });
     });
   }

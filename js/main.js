@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
      iOS 防橡皮筋滚动
      ======================================== */
   document.body.addEventListener('touchmove', (e) => {
-    const scrollable = e.target.closest('.works-scroll, .about-scroll, .lightbox-content, .video-modal-content');
+    const scrollable = e.target.closest('.works-scroll, .about-scroll, .video-modal-content');
     if (!scrollable) {
       e.preventDefault();
     }
@@ -821,6 +821,9 @@ document.addEventListener('DOMContentLoaded', () => {
     currentImageIndex = imageWorks.findIndex(w => w.id === work.id);
     if (currentImageIndex === -1) currentImageIndex = 0;
     updateLightbox();
+    lightbox.style.opacity = '';
+    lightboxImg.style.transform = '';
+    lightboxImg.style.transition = '';
     lightbox.classList.add('active');
   }
 
@@ -834,6 +837,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function closeLightbox() {
     lightbox.classList.remove('active');
+    lightbox.style.opacity = '';
+    lightboxImg.style.transform = '';
+    lightboxImg.style.transition = '';
   }
 
   function prevImage() {

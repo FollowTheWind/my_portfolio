@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const uploadInput = document.createElement('input');
   uploadInput.type = 'file';
   uploadInput.accept = 'image/*,video/*';
+  uploadInput.multiple = true;
   uploadInput.style.display = 'none';
   document.body.appendChild(uploadInput);
 
@@ -637,73 +638,77 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ========================================
-     上传处理（新增作品）
+     上传处理（批量新增作品）
+
+     规则：
+     - 支持一次选择多个文件，按用户选择顺序依次追加
+     - 若当前 IP 存在空作品/占位符（未上传过源文件），先全部删除再追加
+     - 若当前 IP 已有真实作品，则追加到末尾
      ======================================== */
   uploadInput.addEventListener('change', async () => {
-    const file = uploadInput.files[0];
-    if (!file || !currentIP) return;
+    const files = Array.from(uploadInput.files);
+    if (!files.length || !currentIP) return;
 
-    const isVideo = file.type.startsWith('video/');
-    const blobUrl = URL.createObjectURL(file);
-    const id = nextUploadId++;
-    const sourceKey = `src_${currentIP.ipId}_${id}`;
+    // 检查是否存在占位符（未上传源文件的作品）
+    const hasPlaceholder = currentWorks.some(w => !w._uploaded);
+    if (hasPlaceholder) {
+      currentWorks = currentWorks.filter(w => w._uploaded);
+    }
 
-    // 图片直接设 cover，视频异步抓帧
-    const newWork = {
-      id,
-      title: file.name,
-      type: isVideo ? 'video' : 'image',
-      cover: isVideo ? '' : blobUrl,
-      source: blobUrl,
-      _uploaded: true,
-      _sourceKey: sourceKey
-    };
+    // 按选择顺序依次处理每个文件
+    const newWorks = [];
+    for (const file of files) {
+      const isVideo = file.type.startsWith('video/');
+      const blobUrl = URL.createObjectURL(file);
+      const id = nextUploadId++;
+      const sourceKey = `src_${currentIP.ipId}_${id}`;
 
-    // 存文件到 IndexedDB
-    await saveFileToDB(sourceKey, file);
+      const newWork = {
+        id,
+        title: file.name,
+        type: isVideo ? 'video' : 'image',
+        cover: isVideo ? '' : blobUrl,
+        source: blobUrl,
+        _uploaded: true,
+        _sourceKey: sourceKey
+      };
 
-    currentWorks.push(newWork);
+      await saveFileToDB(sourceKey, file);
+      currentWorks.push(newWork);
+      newWorks.push(newWork);
+
+      // 视频异步抓首帧作为封面
+      if (isVideo) {
+        captureVideoFrame(blobUrl, async (dataUrl) => {
+          newWork.cover = dataUrl;
+          const card = worksGrid.querySelector(`.work-card[data-id="${id}"]`);
+          if (card) {
+            const img = card.querySelector('img');
+            if (img && dataUrl) img.src = dataUrl;
+          }
+          if (dataUrl) {
+            try {
+              const resp = await fetch(dataUrl);
+              const coverBlob = await resp.blob();
+              const coverKey = `cover_${currentIP.ipId}_${id}`;
+              newWork._coverKey = coverKey;
+              await saveFileToDB(coverKey, coverBlob);
+            } catch (e) { /* ignore */ }
+          }
+          saveIPsSnapshot();
+        });
+      }
+    }
+
     imageWorks = currentWorks.filter(w => w.type === 'image');
     currentIP.works = [...currentWorks];
 
-    // 此时 newWork.cover 对图片已经是 blobUrl，对视频是 ''
-    const cardEl = createWorkCardElement(newWork, currentIP.ipId);
-
-    const uploadCardEl = document.getElementById('uploadCard');
-    if (uploadCardEl) {
-      worksGrid.insertBefore(cardEl, uploadCardEl);
-    } else {
-      worksGrid.appendChild(cardEl);
-    }
-
-    requestAnimationFrame(() => {
-      cardEl.classList.add('visible');
-    });
-
-    if (isVideo) {
-      captureVideoFrame(blobUrl, async (dataUrl) => {
-        newWork.cover = dataUrl;
-        const img = cardEl.querySelector('img');
-        if (img) img.src = dataUrl;
-        // 存封面缩略图
-        if (dataUrl) {
-          const resp = await fetch(dataUrl);
-          const coverBlob = await resp.blob();
-          const coverKey = `cover_${currentIP.ipId}_${id}`;
-          newWork._coverKey = coverKey;
-          await saveFileToDB(coverKey, coverBlob);
-        }
-        saveIPsSnapshot();
-      });
-    }
-
+    // 重新渲染整个作品网格（含上传卡片）
+    renderWorks(currentWorks);
+    observeWorkCards();
     saveIPsSnapshot();
 
-    if (sortableInstance) {
-      sortableInstance.destroy();
-      sortableInstance = null;
-    }
-    enableDragSort(worksGrid);
+    uploadInput.value = '';
   });
 
   function createWorkCardElement(work, ipId) {

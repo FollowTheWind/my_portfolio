@@ -390,9 +390,6 @@ document.addEventListener('DOMContentLoaded', () => {
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
             </div>
           ` : ''}
-          <div class="work-info">
-            <span class="work-title">${work.title}</span>
-          </div>
         </div>
       `;
     }).join('');
@@ -665,7 +662,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const newWork = {
         id,
-        title: file.name,
+        title: `作品 ${String(currentWorks.length + 1).padStart(2, '0')}`,
         type: isVideo ? 'video' : 'image',
         cover: isVideo ? '' : blobUrl,
         source: blobUrl,
@@ -725,9 +722,6 @@ document.addEventListener('DOMContentLoaded', () => {
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
         </div>
       ` : ''}
-      <div class="work-info">
-        <span class="work-title">${work.title}</span>
-      </div>
     `;
 
     div.addEventListener('click', handleWorkCardClick);
@@ -834,8 +828,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const work = imageWorks[currentImageIndex];
     if (!work) return;
     lightboxImg.src = work.source;
-    lightboxImg.alt = work.title;
-    lightboxCaption.textContent = work.title;
+    lightboxImg.alt = '';
+    lightboxCaption.textContent = '';
   }
 
   function closeLightbox() {
@@ -870,14 +864,52 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   let lightboxTouchStartX = 0;
+  let lightboxTouchStartY = 0;
+  let lightboxSwiping = false; // 是否正在跟手下拉
+
   lightbox.addEventListener('touchstart', (e) => {
     lightboxTouchStartX = e.changedTouches[0].screenX;
+    lightboxTouchStartY = e.changedTouches[0].screenY;
+    lightboxSwiping = false;
+    lightboxImg.style.transition = 'none';
+  }, { passive: true });
+
+  lightbox.addEventListener('touchmove', (e) => {
+    const dy = e.changedTouches[0].screenY - lightboxTouchStartY;
+    const dx = e.changedTouches[0].screenX - lightboxTouchStartX;
+    // 下滑优先：下滑幅度大于左右时，进入跟手下拉
+    if (dy > 10 && dy > Math.abs(dx)) {
+      lightboxSwiping = true;
+      const progress = Math.min(dy / 300, 1); // 归一化到 0~1
+      lightboxImg.style.transform = `translateY(${dy * 0.6}px) scale(${1 - progress * 0.15})`;
+      lightbox.style.opacity = 1 - progress * 0.6;
+    }
   }, { passive: true });
 
   lightbox.addEventListener('touchend', (e) => {
-    const diff = e.changedTouches[0].screenX - lightboxTouchStartX;
-    if (Math.abs(diff) > 50) {
-      diff > 0 ? prevImage() : nextImage();
+    const dy = e.changedTouches[0].screenY - lightboxTouchStartY;
+    const dx = e.changedTouches[0].screenX - lightboxTouchStartX;
+
+    // 恢复 transition
+    lightboxImg.style.transition = '';
+    lightbox.style.transition = '';
+
+    if (lightboxSwiping) {
+      // 下滑超过阈值 → 退出
+      if (dy > 100) {
+        closeLightbox();
+      } else {
+        // 弹回
+        lightboxImg.style.transform = '';
+        lightbox.style.opacity = '';
+      }
+      lightboxSwiping = false;
+      return;
+    }
+
+    // 左右滑动切换
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+      dx > 0 ? prevImage() : nextImage();
     }
   }, { passive: true });
 
